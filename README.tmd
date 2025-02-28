@@ -1,0 +1,20 @@
+# Masjid an-Noor Website
+
+This is the official website for Masjid an-Noor. It includes information about the mosque, prayer times, Ramadan schedules, and contact details.
+
+## Features
+- Responsive design
+- Dynamic Ramadan prayer times
+- Contact form with validation
+- SEO optimized
+- Progressive Web App (PWA) support
+
+## Technologies Used
+- HTML5
+- Tailwind CSS
+- JavaScript
+- Service Worker
+
+## How to Run
+1. Clone the repository.
+2. Open `index.html` in your browser.

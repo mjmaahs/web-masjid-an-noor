@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masjid an-Noor</title>
+  <meta name="description" content="Welcome to Masjid an-Noor. Join us for prayers, community events, and more.">
+  <meta name="keywords" content="Masjid, Mosque, Ramadan, Prayer, Community">
+  <meta name="author" content="Masjid an-Noor">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="images/icon-192x192.png">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="bg-white shadow-lg" aria-label="Main navigation">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="text-3xl font-bold text-gray-800">
+          Masjid an-Noor
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-800 hover:text-blue-500 text-lg">Home</a>
+          <a href="contact.html" class="text-gray-800 hover:text-blue-500 text-lg">Contact</a>
+        </div>
+        <div class="md:hidden">
+          <button class="text-gray-800 focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="hidden md:hidden">
+        <a href="index.html" class="block text-gray-800 hover:text-blue-500 py-2">Home</a>
+        <a href="contact.html" class="block text-gray-800 hover:text-blue-500 py-2">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="text-5xl font-bold mb-6">Welcome to Masjid an-Noor</h1>
+      <p class="text-xl mb-8">"None to be worshipped but Allah. Muhammad is His Prophet."</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="max-w-6xl mx-auto px-4 py-16 flex flex-col md:flex-row gap-8">
+    <div class="flex-1">
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold text-center mb-12">💝 Donate to Masjid an-Noor</h2>
+        <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+          <p class="text-gray-600 mb-6">Your donations help us maintain the Masjid and provide community services.</p>
+          <button class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+            Donate Now
+          </button>
+        </div>
+      </section>
+
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold text-center mb-12">🌙 Ramadan 2025</h2>
+        <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+          <p class="text-gray-600 mb-6">Join us for special prayers, Taraweeh, and community events during Ramadan.</p>
+<a href="files/2025FullRevisedRamadhanCalendar.pdf" download class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+  Learn More
+</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="w-full md:w-1/3">
+      <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+        <h3 class="text-2xl font-bold mb-6 text-center">🕋 Daily Prayer Times</h3>
+        <div class="space-y-4" id="prayerTimes">
+          <!-- Prayer times will be dynamically inserted here -->
+          <div class="flex justify-between">
+            <span>🌅 Fajr</span>
+            <span id="fajr">Loading...</span>
+          </div>
+          <div class="flex justify-between">
+            <span>☀️ Dhuhr</span>
+            <span id="zuhr">Loading...</span>
+          </div>
+          <div class="flex justify-between">
+            <span>🌤️ Asr</span>
+            <span id="asr">Loading...</span>
+          </div>
+          <div class="flex justify-between">
+            <span>🌇 Maghrib</span>
+            <span id="maghrib">Loading...</span>
+          </div>
+          <div class="flex justify-between">
+            <span>🌙 Isha</span>
+            <span id="isha">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+        <h3 class="text-2xl font-bold mb-6 text-center">🕌 Jumah Prayer Times</h3>
+        <div class="space-y-4 text-center">
+          <p>1st Jumah: 12:00 PM</p>
+          <p>2nd Jumah: 1:30 PM</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-bold mb-6 text-center">📍 Location</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2913.724317280269!2d-79.24738868451903!3d43.10047997914617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d3433e3b3d6b9f%3A0x7f8a1c1f8b0b1b8f!2s117%20Geneva%20St%2C%20St.%20Catharines%2C%20ON%20L2R%204N3!5e0!3m2!1sen!2sca!4v1633020000000!5m2!1sen!2sca" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p>&copy; 2025 Masjid an-Noor. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+  <script>
+
+    // Function to fetch prayer times from the API
+async function fetchPrayerTimes() {
+const today = new Date();
+const url = `http://localhost:9090/api/prayertimes/date?month=${today.getMonth() + 1}&day=${today.getDate()}`;
+  const username = "admin";
+  const password = "securepassword";
+
+  // Encode the username and password for Basic Authentication
+  const auth = btoa(`${username}:${password}`);
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Authorization": `Basic ${auth}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch prayer times");
+    }
+
+    const data = await response.json();
+
+    // Update the prayer times in the DOM
+    document.getElementById("fajr").textContent = data.fajrAzan;
+    document.getElementById("zuhr").textContent = data.zuhrAzan;
+    document.getElementById("asr").textContent = data.asrAzan;
+    document.getElementById("maghrib").textContent = data.maghribAzan;
+    document.getElementById("isha").textContent = data.ishaAzan;
+  } catch (error) {
+    console.error("Error fetching prayer times:", error);
+    document.getElementById("prayerTimes").innerHTML = "<p class='text-red-500'>Failed to load prayer times. Please try again later.</p>";
+  }
+}
+
+// Fetch prayer times when the page loads
+fetchPrayerTimes();
+  </script>
+</body>
+</html>
