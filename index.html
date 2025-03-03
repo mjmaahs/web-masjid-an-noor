@@ -12,6 +12,18 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="images/icon-192x192.png">
     <meta name="theme-color" content="#ffffff">
+    <style>
+        /* Add this CSS to align the mobile menu items to the right */
+        #mobileMenu {
+            text-align: right;
+            padding-right: 1rem; /* Adjust this value to bring items closer to the thumb grip */
+        }
+
+        #mobileMenu a {
+            display: block;
+            padding: 0.5rem 0; /* Adjust padding for better thumb reach */
+        }
+    </style>
 </head>
 <body>
 <!-- Navbar -->
@@ -52,6 +64,19 @@
 <!-- Main Content -->
 <div class="max-w-6xl mx-auto px-4 py-16 flex flex-col md:flex-row gap-8">
     <div class="flex-1">
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-12">🌙 Ramadan 2025</h2>
+            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                <p class="text-gray-600 mb-6">Join us for special prayers, Taraweeh, and community events during
+                    Ramadan.</p>
+                <a href="files/2025FullRevisedRamadhanCalendar.png" download
+                   class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                    Download Ramadan Calendar
+                </a>
+            </div>
+        </section>
+
         <section class="mb-16">
             <h2 class="text-3xl font-bold text-center mb-12">💝 Donate to Masjid an-Noor</h2>
             <div class="bg-white p-8 rounded-lg shadow-lg text-center">
@@ -64,17 +89,6 @@
             </div>
         </section>
 
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-12">🌙 Ramadan 2025</h2>
-            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                <p class="text-gray-600 mb-6">Join us for special prayers, Taraweeh, and community events during
-                    Ramadan.</p>
-                <a href="files/2025FullRevisedRamadhanCalendar.pdf" download
-                   class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
-                    Download Ramadan Calendar
-                </a>
-            </div>
-        </section>
     </div>
 
     <!-- Sidebar -->
@@ -131,7 +145,6 @@
 
 <script src="scripts/main.js"></script>
 <script>
-
     // Function to fetch prayer times from the API
     async function fetchPrayerTimes() {
         const today = new Date();
@@ -171,6 +184,12 @@
 
     // Fetch prayer times when the page loads
     fetchPrayerTimes();
+
+    // Toggle Mobile Menu
+    function toggleMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('hidden');
+    }
 </script>
 </body>
 </html>

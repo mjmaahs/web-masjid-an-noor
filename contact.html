@@ -12,6 +12,18 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="images/icon-192x192.png">
     <meta name="theme-color" content="#ffffff">
+    <style>
+        /* Add this CSS to align the mobile menu items to the right */
+        #mobileMenu {
+            text-align: right;
+            padding-right: 1rem; /* Adjust this value to bring items closer to the thumb grip */
+        }
+
+        #mobileMenu a {
+            display: block;
+            padding: 0.5rem 0; /* Adjust padding for better thumb reach */
+        }
+    </style>
 </head>
 <body>
 <!-- Navbar -->
@@ -45,8 +57,8 @@
 <section class="py-16">
     <div class="max-w-6xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Contact Form -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Section 1: Send Us a Message -->
             <div class="bg-white p-8 rounded-lg shadow-lg">
                 <h3 class="text-xl font-bold mb-6">Send Us a Message</h3>
                 <form id="contactForm">
@@ -73,11 +85,12 @@
                         Send Message
                     </button>
                 </form>
+                <div id="responseMessage" class="mt-4 text-center"></div>
             </div>
-            <!-- Address, Phone, and Map -->
+
+            <!-- Section 2: Call Us -->
             <div class="bg-white p-8 rounded-lg shadow-lg">
-                <h3 class="text-xl font-bold mb-6">Our Location</h3>
-                <p class="text-gray-600 mb-4">117 Geneva St, St. Catharines, ON L2R 4N3</p>
+                <h3 class="text-xl font-bold mb-6">Call Us</h3>
                 <div class="flex items-center mb-4">
                     <svg class="w-6 h-6 text-gray-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -85,6 +98,13 @@
                     </svg>
                     <a href="tel:+19056418007" class="text-gray-600 hover:text-blue-500">+1 (905) 641-8007</a>
                 </div>
+                <p class="text-gray-600">We're here to assist you. Feel free to call us during our office hours.</p>
+            </div>
+
+            <!-- Section 3: Our Location -->
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-6">Our Location</h3>
+                <p class="text-gray-600 mb-4">117 Geneva St, St. Catharines, ON L2R 4N3</p>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2913.724317280269!2d-79.24738868451903!3d43.10047997914617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d3433e3b3d6b9f%3A0x7f8a1c1f8b0b1b8f!2s117%20Geneva%20St%2C%20St.%20Catharines%2C%20ON%20L2R%204N3!5e0!3m2!1sen!2sca!4v1633020000000!5m2!1sen!2sca"
                         width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
@@ -107,6 +127,61 @@
             .then(registration => console.log('Service Worker registered'))
             .catch(error => console.log('Service Worker registration failed:', error));
     }
+
+    // Toggle Mobile Menu
+    function toggleMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('hidden');
+    }
+
+    // Handle Contact Form Submission
+    document.getElementById('contactForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get form data
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        const username = "admin";
+        const password = "securepassword";
+
+        // Encode the username and password for Basic Authentication
+        const auth = btoa(`${username}:${password}`);
+
+        // Construct the request body
+        const requestBody = {
+            to: "mjmaahs@hotmail.com", // Fixed recipient
+            subject: `Message from ${name} (${email}) via Masjid an-Noor Website`, // Dynamic subject
+            body: `<h3>Message from ${name} (${email}):</h3><p>${message}</p>` // Dynamic body
+        };
+
+        // Send the POST request to the API
+        try {
+            const response = await fetch('https://api-masjid-an-noor.onrender.com/api/notifications/email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', "Authorization": `Basic ${auth}`,
+                },
+                body: JSON.stringify(requestBody),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to send message');
+            }
+
+            // Show success message
+            document.getElementById('responseMessage').innerHTML = `
+                <p class="text-green-600">Message sent successfully!</p>
+            `;
+        } catch (error) {
+            // Show error message
+            document.getElementById('responseMessage').innerHTML = `
+                <p class="text-red-600">Failed to send message. Please try again later.</p>
+            `;
+            console.error('Error:', error);
+        }
+    });
 </script>
 </body>
 </html>
