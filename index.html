@@ -123,8 +123,8 @@
         <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
             <h3 class="text-2xl font-bold mb-6 text-center">🕌 Jumah Prayer Times</h3>
             <div class="space-y-4 text-center">
-                <p>1st Jumah: 12:00 PM</p>
-                <p>2nd Jumah: 1:30 PM</p>
+                <p>1st Jumah: <span id="jumah1">Loading...</span></p>
+                <p>2nd Jumah: <span id="jumah2">Loading...</span></p>
             </div>
         </div>
 
@@ -191,5 +191,31 @@
         mobileMenu.classList.toggle('hidden');
     }
 </script>
+<script>
+    function updateJumahTimes() {
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+        const daysUntilFriday = (5 - dayOfWeek + 7) % 7; // 5 is Friday
+        const nextFriday = new Date(today);
+        nextFriday.setDate(today.getDate() + daysUntilFriday);
+
+        const isEDT = nextFriday.toLocaleTimeString('en-US', {timeZoneName: 'short'}).includes('EDT');
+
+        console.log("Timezone offset: " + nextFriday);
+        console.log("Is EDT: " + isEDT);
+
+        // Set Jumah times based on whether it's EST or EDT
+        const firstJumah = isEDT ? "1:00 PM" : "12:00 PM";
+        const secondJumah = isEDT ? "2:30 PM" : "1:30 PM";
+
+        // Update the HTML elements
+        document.getElementById("jumah1").textContent = firstJumah;
+        document.getElementById("jumah2").textContent = secondJumah;
+    }
+
+    // Run the function when the page loads
+    document.addEventListener("DOMContentLoaded", updateJumahTimes);
+</script>
+
 </body>
 </html>
